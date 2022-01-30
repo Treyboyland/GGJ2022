@@ -7,9 +7,13 @@ public class GameManager : MonoBehaviour
 {
     public UnityEvent<Vector3> OnEnemyDefeatedAtLocation = new UnityEvent<Vector3>();
 
-    public UnityEvent OnPlayerDonatedSouls = new UnityEvent();
+    public UnityEvent<Deity> OnPlayerDonatedSouls = new UnityEvent<Deity>();
 
     public UnityEvent OnPlayerAttacked = new UnityEvent();
+
+    public UnityEvent<bool> OnStartRift = new UnityEvent<bool>();
+
+    public UnityEvent<bool> OnEndGame = new UnityEvent<bool>();
 
     static GameManager _instance;
 

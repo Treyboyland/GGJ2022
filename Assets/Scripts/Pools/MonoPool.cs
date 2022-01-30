@@ -13,6 +13,7 @@ public class MonoPool<T> : MonoBehaviour where T : MonoBehaviour
     {
         var inst = Instantiate(prefab, transform);
         inst.gameObject.SetActive(false);
+        pool.Add(inst);
         return inst;
     }
 

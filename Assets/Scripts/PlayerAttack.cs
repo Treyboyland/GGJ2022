@@ -7,10 +7,16 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     Player player;
 
+    public Player Player { get { return player; } }
+
     [SerializeField]
     Animator animator;
 
     bool isAttacking = false;
+
+    public bool IsAttacking { get { return isAttacking; } set { isAttacking = value; } }
+
+    public bool CanAttack { get; set; } = true;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +27,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isAttacking && Input.GetButton("Attack"))
+        if (CanAttack && !isAttacking && Input.GetButton("Attack"))
         {
             StartCoroutine(Attack());
         }
@@ -43,7 +49,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         var enemy = other.gameObject.GetComponent<Enemy>();
         Debug.Log("Attack collision: " + other.gameObject.name);
@@ -53,7 +59,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
         var enemy = other.gameObject.GetComponent<Enemy>();
         Debug.Log("Attack collision: " + other.gameObject.name);

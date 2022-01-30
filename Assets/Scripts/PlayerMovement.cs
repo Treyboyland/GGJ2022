@@ -9,13 +9,18 @@ public class PlayerMovement : MonoBehaviour
 
     public float Speed { get { return speed; } }
 
+    public bool CanMove { get; set; } = true;
+
     [SerializeField]
     Rigidbody2D body;
 
     // Update is called once per frame
     void Update()
     {
-        MovePlayer();
+        if (CanMove)
+        {
+            MovePlayer();
+        }
     }
 
 
