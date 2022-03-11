@@ -33,6 +33,7 @@ public class Deity : MonoBehaviour
     {
         if (hitsTaken >= hitsToKill)
         {
+            GameManager.Manager.OnDeityDestroyed.Invoke(transform.position);
             gameObject.SetActive(false);
         }
     }

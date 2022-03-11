@@ -17,9 +17,17 @@ public class ChangeCameraBackground : MonoBehaviour
     [SerializeField]
     Color whiteWins;
 
+    [SerializeField]
+    Color grayWins;
+
     public void SetColor(bool blackWinner)
     {
         gameCamera.backgroundColor = blackWinner ? blackWins : whiteWins;
         text.faceColor = blackWinner ? whiteWins : blackWins;
+    }
+
+    public void SetColorEnd()
+    {
+        gameCamera.backgroundColor = grayWins;
     }
 }

@@ -20,12 +20,24 @@ public class ScaleOfInfluence : MonoBehaviour
     [SerializeField]
     Vector2 boundsForShake;
 
+
+    private void Start()
+    {
+        GameManager.Manager.OnFillAmountSet.Invoke(0.5f);
+    }
+
     public void TipScales()
     {
-        int amount = whiteDeity.CurrentSouls - blackDeity.CurrentSouls;
-        float fill = (1.0f / maxSoulDiff) * amount + 0.5f;
+        int amount = Mathf.Abs(whiteDeity.CurrentSouls - blackDeity.CurrentSouls);
+        Debug.LogWarning("Diff: " + amount);
+        float portion = Mathf.Lerp(0, 0.5f, 1.0f * amount / maxSoulDiff);
+        portion *= blackDeity.CurrentSouls > whiteDeity.CurrentSouls ? -1 : 1;
+
+        float fill = 0.5f + portion;
         bool startRift = fill <= boundsForShake.x || fill >= boundsForShake.y;
+        Debug.LogWarning("Fill amount: " + fill);
         GameManager.Manager.OnStartRift.Invoke(startRift);
+        GameManager.Manager.OnFillAmountSet.Invoke(fill);
         if (Mathf.Abs(amount) >= maxSoulDiff)
         {
             //True if dark deity wins
@@ -33,4 +45,5 @@ public class ScaleOfInfluence : MonoBehaviour
         }
         balance.LerpToNewAmount(fill);
     }
+
 }

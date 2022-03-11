@@ -19,11 +19,15 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField]
     MonoPool<Enemy> pool;
+    float secondsBeforeSpawn;
+
+    float elapsed = 0;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        secondsBeforeSpawn = Random.Range(secondsBetweenSpawns.x, secondsBetweenSpawns.y);
         InitializeScreen();
     }
 
@@ -36,9 +40,25 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    void SpawnMore()
+    {
+        elapsed = 0;
+        secondsBeforeSpawn = Random.Range(secondsBetweenSpawns.x, secondsBetweenSpawns.y);
+        int numToSpawn = Random.Range(this.numToSpawn.x, this.numToSpawn.y);
+        for (int i = 0; i < numToSpawn; i++)
+        {
+            SpawnEnemy();
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        elapsed += Time.deltaTime;
+        if (elapsed >= secondsBeforeSpawn)
+        {
+            SpawnMore();
+        }
         if (!pool.AnyActive())
         {
             InitializeScreen();

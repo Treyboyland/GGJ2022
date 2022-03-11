@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 delta = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        pos += Time.deltaTime * speed * delta;
+        pos += Time.fixedDeltaTime * speed * delta;
 
         body.MovePosition(pos);
     }

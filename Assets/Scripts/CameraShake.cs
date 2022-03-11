@@ -17,7 +17,7 @@ public class CameraShake : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        initalPosition = transform.position;
+        initalPosition = transform.localPosition;
     }
 
     Vector3 GetRandomOffset()
@@ -36,11 +36,11 @@ public class CameraShake : MonoBehaviour
     {
         if (shake)
         {
-            transform.position = initalPosition + GetRandomOffset();
+            transform.localPosition = initalPosition + GetRandomOffset();
         }
         else
         {
-            transform.position = initalPosition;
+            transform.localPosition = initalPosition;
         }
     }
 }

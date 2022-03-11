@@ -13,7 +13,15 @@ public class GameManager : MonoBehaviour
 
     public UnityEvent<bool> OnStartRift = new UnityEvent<bool>();
 
+    public UnityEvent<float> OnFillAmountSet = new UnityEvent<float>();
+
     public UnityEvent<bool> OnEndGame = new UnityEvent<bool>();
+
+    public UnityEvent OnCompleteGame = new UnityEvent();
+
+    public UnityEvent<int> OnMoveCameraToPosition = new UnityEvent<int>();
+
+    public UnityEvent<Vector3> OnDeityDestroyed = new UnityEvent<Vector3>();
 
     static GameManager _instance;
 

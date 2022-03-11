@@ -33,7 +33,7 @@ public class SoulCollector : MonoBehaviour
     {
         if (playerIn != null)
         {
-            Debug.LogWarning("hit");
+            //Debug.LogWarning("hit");
             deity.HitsTaken += playerIn.Player.Damage;
         }
     }
